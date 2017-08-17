@@ -1,9 +1,12 @@
 PREDEF:
-
+  - intro.re
 CHAPS:
-  - hello-vue.re
+  - ch-01.re
+  - ch-02.re
+  - ch-03.re
+  - ch-04.re
+  - ch-05.re
 
 APPENDIX:
 
 POSTDEF:
-
