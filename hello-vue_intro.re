@@ -5,3 +5,7 @@
 == Progressive Framework
 
 == コミュニティ
+
+===[column] Vue.jsのバージョンごとのコードネーム
+
+===[/column]
