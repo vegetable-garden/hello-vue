@@ -1,5 +1,5 @@
 PREDEF:
-  - hello-vue_intro.re
+  - hello-vue_predef.re
 CHAPS:
   - hello-vue_ch-01.re
   - hello-vue_ch-02.re
@@ -9,5 +9,7 @@ CHAPS:
   - hello-vue_ch-06.re
 
 APPENDIX:
+  - hello-vue_appendix.re
 
 POSTDEF:
+  - hello-vue_postdef.re
