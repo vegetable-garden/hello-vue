@@ -1,1 +1,1 @@
-= Vue Vuex vue-router
+= アプリケーションを作る
