@@ -1,1 +1,1 @@
-= アプリケーションを作る
+= ToDoリストにvuexとvue-routerを組み込む
