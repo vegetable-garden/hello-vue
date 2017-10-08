@@ -1,6 +1,10 @@
 = Vue.jsのはじめかた
 
-早速 Vue.js を使い始めたいと考えたとき、どのようにはじめれば良いでしょうか？本章では Vue.js の始め方について書いていきます。
+//lead{
+早速 Vue.js を使い始めたいと考えたとき、どのようにはじめれば良いでしょうか？
+
+本章では Vue.js の始め方について書いていきます。
+//}
 
 == CDNを使う
 
@@ -53,6 +57,31 @@ webpack などのフルセットのテンプレートを利用するのはある
 
 == Ruby on Railsで使う
 
-もし Ruby on Rails を使って Webアプリケーションを構築するのであれば、webpacker を利用するのが Rails のレールに乗った開発が出来るのでお薦めです。
+もし Ruby on Rails を使って Webアプリケーションを構築するのであれば、webpacker を利用するのが Rails のレールに乗った開発が出来るのでお薦めです。ここではRailsのv5.1.4、webpackerはv3.0.2を使用します。
+
+まず webpacker を使用するために Gemfile に追記し @<code>{bundle install} を実行しインストールします。
+
+//list[webpacker-gem][ruby]{
+gem 'webpacker', '~> 3.0'
+//}
+
+その後 webpacker の設定を @<code>{rails} コマンドでインストールします。
+
+//cmd{
+$ @<b>{bundle exec rails webpacker:install}
+//}
+
+このコマンドを実行すると以下のファイルが追加されます
+
+ * .babelrc
+ * .postcssrc.yml
+ * app/javascript/packs/application.js
+ * bin/webpack
+ * bin/webpack-dev-server
+ * config/webpacker.yml
+ * config/webpack/development.js
+ * config/webpack/environments.js
+ * config/webpack/productions.js
+
 
 //footnote[unpkg][UNPKG：https://unpkg.com/]
