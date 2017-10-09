@@ -40,7 +40,29 @@ Progressive Framework とは Evan さんが提唱した概念で、簡単に言�
 
 Vue.js を用いていてもし不明な点があれば公式フォーラム@<fn>{vue-forum}を利用することで解答を得られます。日本語のカテゴリでは日本語で質問することが可能です。
 
-== ドキュメント
+== ガイド
+
+Vue.js の特徴の一つとして豊富な日本語ガイドがあげられます。Vue.js に関連するものとしては以下のものがあります。
+
+ : 公式ガイド
+    https://jp.vuejs.org/v2/guide/
+ : Vue.js サーバーサイドレンダリングガイド
+    https://ssr.vuejs.org/ja/
+ : スタイルガイド（翻訳途中）
+    https://jp.vuejs.org/v2/style-guide/
+ : vue-loderのドキュメント
+    https://ja.nuxtjs.org/guide/
+ : vue-routerのドキュメント
+    https://router.vuejs.org/ja/
+ : Vuexのドキュメント
+    https://vuex.vuejs.org/ja/
+ : Nuxt.jsのガイド
+    https://ja.nuxtjs.org/guide/
+
+ドキュメントは非常に良く作られているため、問題が起きた際はドキュメントに立ち返ることで解決作がわかることもしばしばあります。初心者にわかりやすいドキュメントを提供しているあたりも Vue.js の文化の特徴と言えるでしょう。
+
+またこれらのガイドは github で管理されており、誤字脱字や誤訳などがあれば気軽に pull request を送ることで修正をすることが可能です。
+
 
 == 派生プロジェクト
 
