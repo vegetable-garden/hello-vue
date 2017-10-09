@@ -61,27 +61,59 @@ webpack などのフルセットのテンプレートを利用するのはある
 
 まず webpacker を使用するために Gemfile に追記し @<code>{bundle install} を実行しインストールします。
 
-//list[webpacker-gem][ruby]{
+//list[webpacker-gem][Gemfile]{
 gem 'webpacker', '~> 3.0'
 //}
 
-その後 webpacker の設定を @<code>{rails} コマンドでインストールします。
+その後 webpacker の設定を @<code>{rails} コマンドでインストールします。インストールした後 webpacker の設定等を rake タスクでインストールします。
 
 //cmd{
+$ @<b>{bundle install}
 $ @<b>{bundle exec rails webpacker:install}
 //}
 
-このコマンドを実行すると以下のファイルが追加されます
+このコマンドを実行すると以下のファイルが追加されます。
 
- * .babelrc
- * .postcssrc.yml
- * app/javascript/packs/application.js
- * bin/webpack
- * bin/webpack-dev-server
- * config/webpacker.yml
- * config/webpack/development.js
- * config/webpack/environments.js
- * config/webpack/productions.js
+ : .babelrc
+    babelの設定。
+ : .postcssrc.yml
+    postcssの設定
+ : app/javascript/packs/application.js
+    railsのhelperのjavascript_pack_tagで読み込むJavaScriptファイル
+ : bin/webpack
+    webpackのwrapper
+ : bin/webpack-dev-server
+    webpack-dev-serverのwrapper
+ : config/webpacker.yml
+    webpackの設定が書かれたyml
+ : config/webpack/development.js
+    development環境用のwebpackの設定を追記するJavaScriptファイル
+ : config/webpack/environments.js
+    node_modulesのwebpackerで設定を読み込むJavaScriptファイル
+ : config/webpack/productions.js
+    production環境用のwebpackの設定を追記するJavaScriptファイル
 
+webpacker の設定等 rake タスクで追加した後、Vue.js のインストールを rake タスクで行います。
+
+//cmd{
+$ @<b>{bundle exec rails webpacker:install:vue}
+//}
+
+このコマンドを実行すると以下のファイルが追加されます。
+
+ : app/javascript/app.vue
+    Hello Vue! と表示するだけのコンポーネント
+ : app/javascript/pacls/hello_vue.js
+    app.vue を使用するJavaScriptファイル
+
+ほかにも package.json に vue,vue-loader,vue-template-compiler が追加され yarn でインストールされます。
+
+hello_vue.js を javascript_pack_tag で読み込むと Hello Vue! と表示されます。
+
+最低限の設定しか施されていないので、templateにpugを使いたい、styleにscssを使いたい等があれば自身でインストールする必要があります。
+
+== まとめ
+
+このように様々な方法で Vue.js をはじめることが可能です。自身のプロジェクトにあった方法でインストールを行い、開発を進めていきましょう。
 
 //footnote[unpkg][UNPKG：https://unpkg.com/]
