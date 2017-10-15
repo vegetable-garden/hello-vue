@@ -10,7 +10,7 @@ Vue.js の機能は多機能です。本稿では基本的なよく使うであ�
 
 まずはじめにVueインスタンスを作成することからはじまります。Vueインスタンスは以下のように生成します。
 
-//source[new.js]{
+//source[new.js][javascript]{
 new Vue({
   // オプションを記述していく
   el: '#app',
@@ -42,7 +42,7 @@ Vue.js を使用するにあたりインスタンスのライフサイクルを�
 
 Vue.js はインスタンスのライフサイクルごとに呼ばれるフックを提供しています。フックはVueインスタンスを作成する際渡す引数のオブジェクトに、以下のように関数を登録して使用していきます。
 
-//source[hook.js]{
+//source[hook.js][javascript]{
 new Vue({
   created: function () {
     // ここはインスタンスが作際された後に呼ばれる
@@ -80,7 +80,7 @@ Vueのライフサイクル
 
 Vue.js は data プロパティに登録したオブジェクトに属するすべてのプロパティを Vue.js 内のリアクティブシステムに取り込みます。以下のコードでは count がリアクティブになります。
 
-//source[new.js]{
+//source[new.js][javascript]{
 var newInstance = new Vue({
   el: '#app',
   // data内のプロパティはすべてリアクティブになる
@@ -92,7 +92,7 @@ var newInstance = new Vue({
 
 data プロパティの count を表示したいときは以下のように書きます。
 
-//source[template.html]{
+//source[template.html][html]{
 <h1>Hello Vue !!</h1>
 <div id="app">
   count:{{ count }}
@@ -107,7 +107,7 @@ HTML 内に {{}} があります。これは "Mustache" 構文というもので
 
 次に data の中の count を書き換えてみたいと思います。デベロッパーツールを開いて以下のコードを実行してみてください。
 
-//source[increment.js]{
+//source[increment.js][javascript]{
 newInstance.$data.count++
 //}
 
@@ -125,11 +125,11 @@ countがインクリメントされる
 
 === 条件分岐
 
-Vue.js で値による条件分岐で DOM の表示非表示を操作したい時、使用できるディレクティブとして v-if と v-show が存在します。v-if と v-show の違いとしては、v-if は DOM から消してしまいますが、v-show は display 属性を none にするだけで DOM には存在するという違いがあります。また、v-if は v-else-if や v-else のように複数の条件に対応することができます。
+値による条件分岐で DOM の表示非表示を操作したい時、使用できるディレクティブとして v-if と v-show が存在します。v-if と v-show の違いとしては、v-if は DOM から消してしまいますが、v-show は display 属性を none にするだけで DOM には存在するという違いがあります。また、v-if は v-else-if や v-else のように複数の条件に対応することができます。
 
 v-show を試してみます。以下のようなコードを書いてみます。
 
-//source[v-show.js]{
+//source[v-show.js][javascript]{
 new Vue({
   el: '#app',
   data: {
@@ -138,7 +138,7 @@ new Vue({
 })
 //}
 
-//source[template.html]{
+//source[template.html][html]{
 <h1>Hello Vue !!</h1>
 <div id="app">
   <div v-show="showFlg">
@@ -155,7 +155,7 @@ v-showの図
 
 v-if を試してみます。以下のようなコードを書いてみます。
 
-//source[v-if.js]{
+//source[v-if.js][javascript]{
 new Vue({
   el: '#app',
   data: {
@@ -164,7 +164,7 @@ new Vue({
 })
 //}
 
-//source[template.html]{
+//source[template.html][html]{
 <h1>Hello Vue !!</h1>
 <div id="app">
   <div v-if="showFlg">
@@ -184,7 +184,95 @@ v-ifの図
 
 以上のように表示に関する条件分岐は二種類の方法で実現できます。要件に応じて DOM に残す必要があるか検討し使用していくのがよいです。
 
-=== 繰り返し
+=== リスト表示
+
+リスト表示を行いたいときは v-for を使用します。v-for は他のディレクティブと違い""の中の値は特殊な文法で書いていきます。リスト表示は以下のようなコードで行います。
+
+//source[template.html][html]{
+<ul v-for="item in items">
+  <li>
+    {{ item }}
+  </li>
+</ul>
+//}
+
+"item in items" は "item of items" と書くことも可能です。items に入れるオブジェクトは Array・Object・number・string の4種類です。それぞれのオブジェクトを使用する例を以下のように書きます。
+
+//source[v-if.js][javascript]{
+new Vue({
+  el: '#app',
+  data: {
+  	array: [ "kongo", "hiei", "haruna", "kirishima" ],
+    object: {
+    	"hoge": "hogehoge",
+      "fuga": "fugafuga"
+    },
+    number: 10,
+    string: "Lorem"
+  }
+})
+//}
+
+//source[template.html][html]{
+<script src="https://unpkg.com/vue"></script>
+
+<h1>Hello Vue !!</h1>
+<div id="app">
+  <h2>
+    array
+  </h2>
+  <ul v-for="(item, index) in array">
+    <li>
+      {{ item }} - {{ index }}
+    </li>
+  </ul>
+  <h2>
+    Object
+  </h2>
+  </h2>
+  <ul v-for="(val, key, index) in object">
+    <li>
+      {{ val }} - {{ key }} - {{ index }}
+    </li>
+  </ul>
+  <h2>
+    number
+  </h2>
+  <ul v-for="(num, index) in number">
+    <li>
+      {{ num }} - {{ index }}
+    </li>
+  </ul>
+  <h2>
+    string
+  </h2>
+  <ul v-for="(char, index) in string">
+    <li>
+      {{ char }} - {{ index }}
+    </li>
+  </ul>
+</div>
+//}
+
+表示結果を以下のようになります。
+
+//image[v-for_01][Array][scale=0.5]{
+Array
+//}
+
+//image[v-for_02][Object][scale=0.5]{
+Object
+//}
+
+//image[v-for_03][number][scale=0.5]{
+number
+//}
+
+//image[v-for_04][string][scale=0.5]{
+string
+//}
+
+このように様々なオブジェクトに対してリスト表示を行うことが可能です。よく使用するのは主に配列に対するリスト表示だと思われます。配列に対して追加や削除を行うとそれに応じてリストは再レンダリングされます。
 
 === イベントリスナ
 
