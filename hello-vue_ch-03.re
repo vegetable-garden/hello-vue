@@ -121,11 +121,72 @@ countがインクリメントされる
 
 == ディレクティブ
 
-== 条件分岐
+ディレクティブは v- から始まる Vue.js で使用する特殊な属性です。主に data プロパティに登録したオブジェクトの値が変化した際、リアクティブに DOM に対して変化を加える効果があります。例としては条件分岐を行うことのできる v-if 、データの繰り返し表示に使用する v-for 、イベントリスナをアタッチするための v-on 、などがあります。
 
-== 繰り返し
+=== 条件分岐
 
-== ユーザ入力イベント
+Vue.js で値による条件分岐で DOM の表示非表示を操作したい時、使用できるディレクティブとして v-if と v-show が存在します。v-if と v-show の違いとしては、v-if は DOM から消してしまいますが、v-show は display 属性を none にするだけで DOM には存在するという違いがあります。また、v-if は v-else-if や v-else のように複数の条件に対応することができます。
+
+v-show を試してみます。以下のようなコードを書いてみます。
+
+//source[v-show.js]{
+new Vue({
+  el: '#app',
+  data: {
+    showFlg: false
+  }
+})
+//}
+
+//source[template.html]{
+<h1>Hello Vue !!</h1>
+<div id="app">
+  <div v-show="showFlg">
+    表示されないけどDOMにいる
+  </div>
+</div>
+//}
+
+このコードを実行すると@<img>{v-show}のように DOM には描画されますが、display が none になり、見かけ上は表示されていないのですが DOM 上には存在するようになります。
+
+//image[v-show][v-showではDOMに描画されるがdisplayがnoneになる]{
+v-showの図
+//}
+
+v-if を試してみます。以下のようなコードを書いてみます。
+
+//source[v-if.js]{
+new Vue({
+  el: '#app',
+  data: {
+    showFlg: false
+  }
+})
+//}
+
+//source[template.html]{
+<h1>Hello Vue !!</h1>
+<div id="app">
+  <div v-if="showFlg">
+    表示されない
+  </div>
+  <div v-else>
+    表示される
+  </div>
+</div>
+//}
+
+このコードを実行すると@<img>{v-if}のように DOM に描画されません。
+
+//image[v-if][v-ifではDOMに描画されない]{
+v-ifの図
+//}
+
+以上のように表示に関する条件分岐は二種類の方法で実現できます。要件に応じて DOM に残す必要があるか検討し使用していくのがよいです。
+
+=== 繰り返し
+
+=== イベントリスナ
 
 == フォーム
 
