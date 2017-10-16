@@ -53,7 +53,7 @@ new Vue({
 
 フックは @<img>{vue-lifecycle} のような順番で呼ばれていきます。
 
-//image[vue-lifecycle][Vueインスタンスのライフサイクル]{
+//image[vue-lifecycle][Vueインスタンスのライフサイクル][scale=0.9]{
 Vueのライフサイクル
 //}
 
@@ -219,7 +219,7 @@ new Vue({
   data: {
   	array: [ "kongo", "hiei", "haruna", "kirishima" ],
     object: {
-    	"hoge": "hogehoge",
+      "hoge": "hogehoge",
       "fuga": "fugafuga"
     },
     number: 10,
@@ -269,19 +269,19 @@ new Vue({
 
 表示結果を以下のようになります。
 
-//image[v-for_01][Array][scale=0.5]{
+//image[v-for_01][Array][scale=0.4]{
 Array
 //}
 
-//image[v-for_02][Object][scale=0.5]{
+//image[v-for_02][Object][scale=0.4]{
 Object
 //}
 
-//image[v-for_03][number][scale=0.5]{
+//image[v-for_03][number][scale=0.4]{
 number
 //}
 
-//image[v-for_04][string][scale=0.5]{
+//image[v-for_04][string][scale=0.4]{
 string
 //}
 
