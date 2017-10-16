@@ -1,4 +1,4 @@
-= Vue.js の基本的な使い方
+= Vue.jsの基本的な使い方
 
 //lead{
 ここでは Vue.js の基本的な使い方について簡単に書きます。
@@ -127,6 +127,13 @@ countがインクリメントされる
 
 値による条件分岐で DOM の表示非表示を操作したい時、使用できるディレクティブとして v-if と v-show が存在します。v-if と v-show の違いとしては、v-if は DOM から消してしまいますが、v-show は display 属性を none にするだけで DOM には存在するという違いがあります。また、v-if は v-else-if や v-else のように複数の条件に対応することができます。
 
+書式はそれぞれ以下のように書きます。
+
+//emlist[][]{
+v-if="dataプロパティに登録しているオブジェクトのキー"
+v-show="dataプロパティに登録しているオブジェクトのキー"
+//}
+
 v-show を試してみます。以下のようなコードを書いてみます。
 
 //source[v-show.js][javascript]{
@@ -186,7 +193,15 @@ v-ifの図
 
 === リスト表示
 
-リスト表示を行いたいときは v-for を使用します。v-for は他のディレクティブと違い""の中の値は特殊な文法で書いていきます。リスト表示は以下のようなコードで行います。
+リスト表示を行いたいときは v-for を使用します。v-for は他のディレクティブと違い""の中の値は特殊な文法で書いていきます。
+
+書式は以下のように書きます
+
+//emlist[][]{
+v-for="変数名 in dataプロパティに登録しているオブジェクトのキー"
+//}
+
+リスト表示は以下のようなコードで行います。
 
 //source[template.html][html]{
 <ul v-for="item in items">
@@ -214,8 +229,6 @@ new Vue({
 //}
 
 //source[template.html][html]{
-<script src="https://unpkg.com/vue"></script>
-
 <h1>Hello Vue !!</h1>
 <div id="app">
   <h2>
@@ -296,6 +309,80 @@ Vue.js の data プロパティの配下は Vue.js によって変更メソッ�
 リスト表示の部分は Vue.js の事情により複雑です。ガイド@<fn>{list-guide}を参照して開発を行いましょう。
 
 === イベントリスナ
+
+DOM に対してクリックやホバーを検出したい場合、v-on を使うことでイベント発火時に任意のメソッドを実行することが可能です。書式としては以下のようにディレクティブを書くことで実現します。
+
+//emlist[][]{
+v-on:イベント名="行いたい処理"
+//省略記法
+@イベント名="行いたい処理"
+//}
+
+簡単な例では以下のように書くと DOM をクリックした際ダイアログを出すことができます。
+
+//source[template.html][html]{
+<div v-on:click="alert('hoge')">alert</div>
+//}
+
+"" の中に JavaScript コードを書くことができます。ですがこの例のように "" の中に書いていくスタイルでは複雑なコードを書きたい場合現実的ではありません。
+
+その時は Vue インスタンスを作成する際 methods プロパティに登録したメソッドの名前を記入することで、その処理を実行することで対応します。簡単な例を以下に書きます。
+
+//source[v-on.js][javascript]{
+new Vue({
+  el: '#app',
+  methods: {
+  	showAlert: function () {
+    	alert('hoge')
+    }
+  }
+})
+//}
+
+//source[template.html][html]{
+<h1>Hello Vue !!</h1>
+<div id="app">
+  <div v-on:click="showAlert">
+    alert
+  </div>
+</div>
+//}
+
+このように書くと methods 内の showAlert メソッドが実行されます。動作は先ほどのコード例と同じ動作をします。
+
+またmethods 内のメソッドで data プロパティに登録されているオブジェクトは this を介して参照することができるので、参照したデータの操作を行い、DOM をリアクティブに書き換え、動的なアプリケーションの開発を行うことができます。
+
+以下のコードは data プロパティに登録されているオブジェクトを更新して表示する例です。
+
+//source[increment.js][javascript]{
+new Vue({
+  el: '#app',
+  data: {
+    count: 0
+  },
+  methods: {
+  	increment: function () {
+    	this.count += 1
+    }
+  }
+})
+//}
+
+//source[template.html][html]{
+<h1>Hello Vue !!</h1>
+<div id="app">
+  <div v-on:click="increment">
+    increment
+  </div>
+  {{ count }}
+</div>
+//}
+
+increment と表示された部分をクリックすることで、data プロパティ内の count が更新され、数値がインクリメントされていくのがわかると思います。
+
+//image[v-on][incrementをクリックすると数値が更新されていく]{
+increment
+//}
 
 == フォーム
 
