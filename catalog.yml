@@ -6,8 +6,5 @@ CHAPS:
   - hello-vue_ch-03.re
   - hello-vue_ch-04.re
 
-APPENDIX:
-  - hello-vue_appendix.re
-
 POSTDEF:
   - hello-vue_postdef.re
